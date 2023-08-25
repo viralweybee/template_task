@@ -31,75 +31,30 @@ ul {
     margin: 0
 }
 
-.btn:after,
-.text-link:after {
-    position: absolute;
-    background-color: var(--primary-color);
-    content: '';
-    transition: .5s;
-    left: 0
+.btn,
+.text-link {
+    position: relative
 }
 
 #button:hover,
 .banner-area,
 .btn:after,
-.team-control .next:hover,
-.team-control .prev:hover,
-.testi-control .next:hover,
-.testi-control .prev:hover,
 .text-link:after {
     background-color: var(--primary-color)
 }
 
-.title,
-button.share-btn {
-    color: var(--primary-color)
-}
-
-.slick-slider,
-body {
-    box-sizing: border-box
-}
-
-.btn,
-.slick-list,
-.slick-slider,
-.slick-track,
-.text-link {
-    position: relative
-}
-
-#button,
-.slick-loading .slick-slide,
-.slick-loading .slick-track {
-    visibility: hidden
-}
-
-.slick-list,
-.team_inner {
-    overflow: hidden
-}
-
-.footer-logo img,
-.navbar-brand img {
-    max-height: 90px;
-    max-width: 300px
-}
-
-#NewsLetterFormResponse,
-.banner-content .title,
-.designation,
-.our_team .title,
-.team-member-desc,
-.testi-item .title,
-.testi-item p,
-.testimonial_section .title,
-.translate {
-    text-align: center
+.btn:after,
+.modal {
+    top: 0;
+    height: 100%
 }
 
 html {
     scroll-behavior: smooth
+}
+
+body {
+    box-sizing: border-box
 }
 
 h1,
@@ -115,6 +70,7 @@ h6 {
     margin-bottom: 0
 }
 
+.updates-content .date,
 ol,
 p,
 ul {
@@ -146,18 +102,15 @@ img {
 }
 
 .copy-right img,
-.hide,
-.slick-arrow.slick-hidden,
-.slick-slide.slick-loading img {
+.hide {
     display: none
 }
 
 .btn,
 .btn:after,
-.slick-list,
-.slick-slider,
-.slick-track,
-.text-link {
+.modal.show,
+.text-link,
+.text-link:after {
     display: block
 }
 
@@ -168,6 +121,7 @@ img {
 .title {
     font-size: 36px;
     font-weight: 500;
+    color: var(--primary-color);
     margin-bottom: 10px
 }
 
@@ -193,6 +147,7 @@ img {
     right: 30px;
     transition: background-color .3s, opacity .5s, visibility .5s;
     opacity: 0;
+    visibility: hidden;
     z-index: 1000
 }
 
@@ -210,13 +165,17 @@ img {
     padding: 0 1px 3.5px
 }
 
+.btn,
+.modal-body .social-media ul li a:hover {
+    background-color: var(--second-color)
+}
+
 .btn {
     width: fit-content;
     cursor: pointer;
     border: 0;
     z-index: 1;
     border-radius: 0;
-    background-color: var(--second-color);
     font-size: 18px;
     letter-spacing: 1px;
     margin-top: 15px;
@@ -224,15 +183,19 @@ img {
 }
 
 .btn:hover:after,
-.text-link {
+.modal,
+.text-link,
+.updates-content:hover:after {
     width: 100%
 }
 
 .btn:after {
+    transition: .5s;
+    content: '';
+    position: absolute;
     width: 3%;
-    height: 100%;
     z-index: -1;
-    top: 0
+    left: 0
 }
 
 .text-link {
@@ -243,22 +206,20 @@ img {
     padding: 5px 0
 }
 
-.designation,
-.team-member-desc {
-    font-family: var(--second-font)
-}
-
 .text-link:hover {
     color: var(--primary-font);
     padding-left: 25px
 }
 
 .text-link:after {
+    content: '';
+    position: absolute;
     width: 0;
     height: 3px;
     border-radius: 10px;
-    display: block;
-    top: 15px
+    transition: .5s;
+    top: 15px;
+    left: 0
 }
 
 .footer-links .navbar-nav .nav-item .nav-link:hover:after,
@@ -271,6 +232,7 @@ button.share-btn {
     background: 0 0;
     border: none;
     outline: 0;
+    color: var(--primary-color);
     padding: 0 10px
 }
 
@@ -279,181 +241,100 @@ button.share-btn svg {
     width: 15px
 }
 
-.slick-slider {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -khtml-user-select: none;
-    -ms-touch-action: pan-y;
-    touch-action: pan-y;
-    -webkit-tap-highlight-color: transparent
+.modal {
+    position: fixed;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    outline: 0;
+    background-color: #00000069
 }
 
-.slick-list {
-    margin: 0;
-    padding: 0
+.modal-dialog {
+    max-width: 500px;
+    margin: 5rem auto
 }
 
-.slick-list:focus {
+.modal-content {
+    background-color: var(--white);
+    background-clip: padding-box;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
     outline: 0
 }
 
-.slick-list.dragging {
+.modal-body .close span,
+.modal-body .social-media ul li a,
+.top-header {
+    background-color: var(--primary-color)
+}
+
+.modal-body {
+    position: relative
+}
+
+.modal.show {
+    padding-top: 20px
+}
+
+.modal-body .close span {
     cursor: pointer;
-    cursor: hand
-}
-
-.slick-slider .slick-list,
-.slick-slider .slick-track {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0)
-}
-
-.slick-track {
-    top: 0;
-    left: 0;
-    margin-left: auto;
-    margin-right: auto
-}
-
-.slick-track:after,
-.slick-track:before {
-    display: table;
-    content: ''
-}
-
-.slick-track:after {
-    clear: both
-}
-
-.slick-slide {
-    display: none;
-    float: left;
-    height: 100%;
-    min-height: 1px
-}
-
-[dir=rtl] .slick-slide {
-    float: right
-}
-
-.dropdown-menu.show,
-.slick-initialized .slick-slide,
-.slick-slide img {
-    display: block
-}
-
-.slick-slide.dragging img {
-    pointer-events: none
-}
-
-.slick-vertical .slick-slide {
+    width: 25px;
+    height: 25px;
     display: block;
-    height: auto;
-    border: 1px solid transparent
-}
-
-.slick-next,
-.slick-prev {
-    font-size: 0;
-    line-height: 0;
+    color: var(--white);
+    line-height: 25px;
+    border-radius: 50%;
+    font-size: 22px;
     position: absolute;
-    top: 50%;
+    margin: -10px;
+    right: 0;
+    top: 0
+}
+
+.modal-body .title {
+    font-size: 26px;
+    text-align: center
+}
+
+.modal-body .social-media {
+    padding: 20px 0;
+    display: block !important
+}
+
+.modal-body .social-media ul {
+    justify-content: center;
+    display: flex;
+    gap: 15px
+}
+
+.modal-body .social-media ul li a {
     display: block;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    -webkit-transform: translate(0, -50%);
-    -ms-transform: translate(0, -50%);
-    transform: translate(0, -50%);
-    cursor: pointer;
-    color: transparent;
-    border: none;
-    outline: 0;
-    background: 0 0
+    width: 30px;
+    height: 30px;
+    transition: .5s
 }
 
-.copy-right .copy-right-item a,
-.designation,
-.navbar-nav .nav-item .nav-link:hover,
-.top-contact a:hover {
-    color: var(--second-color)
+.modal-body .social-media ul li a svg {
+    fill: var(--white);
+    padding: 5px
 }
 
-.slick-next:focus,
-.slick-next:hover,
-.slick-prev:focus,
-.slick-prev:hover {
-    color: transparent;
-    outline: 0;
-    background: 0 0
-}
-
-.slick-next:focus:before,
-.slick-next:hover:before,
-.slick-prev:focus:before,
-.slick-prev:hover:before {
-    opacity: 1
-}
-
-.slick-next.slick-disabled:before,
-.slick-prev.slick-disabled:before {
-    opacity: .25
-}
-
-.slick-next:before,
-.slick-prev:before {
-    font-family: slick;
-    font-size: 20px;
-    line-height: 1;
-    opacity: .75;
-    color: #fff;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-.dropdown-menu .dropdown-item,
-.navbar-nav .nav-item .nav-link {
-    color: var(--primary-color);
-    font-weight: 500;
-    letter-spacing: 1px
-}
-
-.slick-prev {
-    left: -25px
-}
-
-[dir=rtl] .slick-prev {
-    right: -25px;
-    left: auto
-}
-
-.slick-prev:before,
-[dir=rtl] .slick-next:before {
-    content: 'â†'
-}
-
-.slick-next:before,
-[dir=rtl] .slick-prev:before {
-    content: 'â†’'
-}
-
-.slick-next {
-    right: -25px
-}
-
-[dir=rtl] .slick-next {
-    right: auto;
-    left: -25px
+.top-contact .icon svg,
+.top-header .social-media ul li a svg {
+    fill: var(--primary-color);
+    padding: 5px
 }
 
 .top-header {
-    background-color: var(--primary-color);
     padding: 10px 0
 }
 
@@ -471,6 +352,7 @@ button.share-btn svg {
 .top-header-items a{
     text-decoration: underline;
 }
+
 .top-contact .icon,
 .top-header .social-media ul li a {
     width: 30px;
@@ -482,8 +364,6 @@ button.share-btn svg {
 }
 
 .top-contact .icon svg {
-    padding: 5px;
-    fill: var(--primary-color);
     margin-top: 1px
 }
 
@@ -492,6 +372,12 @@ button.share-btn svg {
     font-size: 16px;
     color: var(--white);
     letter-spacing: 1px
+}
+
+.copy-right .copy-right-item a,
+.navbar-nav .nav-item .nav-link:hover,
+.top-contact a:hover {
+    color: var(--second-color)
 }
 
 .newsletter .form-row,
@@ -503,11 +389,6 @@ button.share-btn svg {
 .top-header .social-media ul li a:hover {
     transform: rotate(360deg);
     background-color: var(--second-color)
-}
-
-.top-header .social-media ul li a svg {
-    fill: var(--primary-color);
-    padding: 5px
 }
 
 .top-header .social-media ul li a:hover svg {
@@ -529,6 +410,11 @@ button.share-btn svg {
     line-height: 4px
 }
 
+.navbar-brand img {
+    max-width: 300px;
+    max-height: 90px
+}
+
 .navbar-toggler {
     display: none;
     width: 30px;
@@ -546,8 +432,11 @@ button.share-btn svg {
 
 .navbar-nav .nav-item .nav-link {
     font-size: 18px;
+    letter-spacing: 1px;
     transition: .5s;
-    padding: 0 .5rem
+    padding: 0 .5rem;
+    color: var(--primary-color);
+    font-weight: 500
 }
 
 .nav-item.dropdown {
@@ -583,9 +472,16 @@ button.share-btn svg {
 }
 
 .dropdown-menu .dropdown-item {
+    letter-spacing: 1px;
     width: 100%;
     display: block;
+    font-weight: 500;
+    color: var(--primary-color);
     padding: 6px 15px
+}
+
+.dropdown-menu.show {
+    display: block
 }
 
 .fixed-header {
@@ -610,146 +506,85 @@ button.share-btn svg {
 
 .banner-content .title {
     color: var(--white);
+    text-align: center;
     line-height: 1.5;
     padding: 75px 0
 }
 
-.about-us-inside {
+.updates .updates-main {
     display: flex;
+    gap: 15px;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
-    justify-content: space-between
+    margin: 25px 0
 }
 
-.about-us-img,
-.about-vm-image img {
-    margin-top: 15px
+.updates .updates-main .updates-items {
+    width: 32%;
+    background-color: var(--white);
+    height: 100%
 }
 
-.about-us-content,
-.about-us-img,
-.vision-mission-items div {
-    flex: 1 1
-}
-
-.vision-mission {
+.updates-content {
+    position: relative;
+    padding: 15px;
     background-color: var(--bgcolor)
 }
 
-.vision-mission-items {
+.updates-date-share {
     display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    margin-bottom: 25px
-}
-
-.our_team .title {
-    margin-bottom: 20px
-}
-
-.team-member-desc .title {
-    font-weight: 500;
-    font-size: 18px
-}
-
-.team-member .team-member-image img {
-    object-fit: cover;
-    aspect-ratio: 1.1;
-    max-width: 270px;
-    max-height: 270px
-}
-
-.team-member-desc {
-    box-shadow: 0 5px 19px #f7f7f7;
-    padding: 8px 15px;
-    width: 75%;
-    background-color: var(--white);
-    margin: -15px auto 0;
-    z-index: 1;
-    position: relative
-}
-
-.slick-slide {
-    margin: 0 20px
-}
-
-.team-control,
-.testi-control {
-    gap: 5px;
-    margin-top: 25px;
-    display: flex
-}
-
-.team-control {
-    justify-content: center
-}
-
-.team-control .next,
-.team-control .prev,
-.testi-control .next,
-.testi-control .prev {
-    cursor: pointer;
-    outline: 0;
-    transition: .5s;
-    background-color: var(--second-color);
-    border: none;
-    width: 40px;
-    height: 40px;
-    color: var(--white);
-    border-radius: 50%
-}
-
-.newsletter button.subcribe,
-.testi-item .title {
-    color: var(--primary-color);
-    font-family: var(--primary-font)
-}
-
-.team-control button svg,
-.testi-control button svg {
-    fill: var(--white);
-    width: 30px;
-    height: 30px;
-    padding: 4px 3px 0 0
-}
-
-.team-control .next svg,
-.testi-control .next svg {
-    transform: rotate(180deg);
-    padding: 0 4px 3px 0
-}
-
-.testi-item img {
-    width: 80px;
-    margin: 15px auto
-}
-
-.testimonial_section .slick-track .carousel-item {
-    height: auto
-}
-
-.testimonial_section .main-control button {
-    margin-top: 20px;
-    border-radius: 50%
-}
-
-.testi-item .decs {
+    justify-content: space-between;
     margin-bottom: 10px
 }
 
-.testi-item .title {
-    font-weight: 500;
-    font-size: 22px
+.updates-content .date {
+    color: var(--primary-color);
+    font-size: 15px;
+    font-weight: 600
 }
 
-.designation {
+.updates-content .title {
+    font-size: 22px;
     font-weight: 500;
-    letter-spacing: 1px
+    color: var(--second-color)
 }
 
-.testi-control {
-    position: relative;
-    justify-content: center
+.updates-content:after {
+    content: '';
+    width: 0%;
+    height: 3px;
+    display: block;
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    transition: .5s;
+    background-color: var(--second-color)
+}
+
+.updates .btn {
+    margin: 40px auto 0
+}
+
+.updates-images {
+    height: 70%
+}
+
+.updates-images img {
+    aspect-ratio: 1.1;
+    max-width: 373px;
+    max-height: 373px;
+    object-fit: cover
+}
+
+.pagination {
+    margin-bottom: 50px;
+    text-align: right
+}
+
+.pagination-item {
+    display: flex;
+    gap: 15px;
+    justify-content: end
 }
 
 .newsletter {
@@ -784,12 +619,13 @@ button.share-btn svg {
     outline: 0;
     color: var(--white);
     width: 61%;
-    border-radius: 8px;
+    border-radius: 8px
 }
 
 .newsletter .form-row .form-control::placeholder {
     color: #999
 }
+   
 
 .newsletter button.subcribe {
     font-size: 18px;
@@ -797,6 +633,8 @@ button.share-btn svg {
     cursor: pointer;
     transition: .5s;
     background-color: var(--white);
+    color: var(--primary-color);
+    font-family: var(--primary-font);
     margin-left: 8px;
     border: none;
     outline: 0;
@@ -805,12 +643,14 @@ button.share-btn svg {
     border-radius: 15px;
 }
 
+
 .newsletter button.subcribe:hover {
     background-color: var(--second-color);
     color: var(--white)
 }
 
 #NewsLetterFormResponse {
+    text-align: center;
     margin-top: 15px;
     color: var(--white);
     font-size: 20px;
@@ -828,7 +668,7 @@ button.share-btn svg {
 
 .main-footer {
     padding: 70px 0;
-    background-color: #ecebde;
+    background-color: #f2f2f2
 }
 
 .footer-inside {
@@ -852,7 +692,9 @@ button.share-btn svg {
 }
 
 .footer-logo img {
-    width: auto
+    width: auto;
+    max-width: 300px;
+    max-height: 90px
 }
 
 .footer-items .decs {
@@ -961,6 +803,7 @@ button.share-btn svg {
 }
 
 .translate {
+    text-align: center;
     margin: 10px 0
 }
 
@@ -1032,22 +875,16 @@ button.share-btn svg {
         top: 10px
     }
 
+    .updates .updates-main .updates-items {
+        width: 44%
+    }
+
     .footer-items:first-child {
         width: 100%
     }
 }
 
 @media only screen and (max-width:768px) {
-    .title {
-        font-size: 28px
-    }
-
-    .about-us-content,
-    .about-us-img,
-    .vision-mission-items div {
-        flex: auto
-    }
-
     .newsletter .form-row {
         flex-wrap: wrap
     }
@@ -1067,6 +904,16 @@ button.share-btn svg {
     }
 }
 
+@media only screen and (max-width:600px) {
+    .updates .updates-main .updates-items {
+        width: 90%
+    }
+
+    .updates-images {
+        height: auto
+    }
+}
+
 @media only screen and (max-width:575px) {
     h1 {
         font-size: 36px
@@ -1083,5 +930,17 @@ button.share-btn svg {
 
     .main-footer {
         padding: 20px 0
+    }
+}
+
+@media only screen and (max-width:450px) {
+    .pagination-item {
+        flex-wrap: wrap;
+        justify-content: center
+    }
+
+    .pagination-item .btn {
+        width: 100%;
+        margin: 0
     }
 }
